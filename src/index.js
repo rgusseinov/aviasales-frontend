@@ -1,2 +1,3 @@
 /* eslint-disable linebreak-style */
-import "./scss/index.scss";
+import "../public/scss/header.scss";
+import "../public/scss/index.scss";
