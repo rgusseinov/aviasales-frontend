@@ -5,6 +5,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<title>Aviasales Frontend</title>
 </head>
 <div class="wrapper">
@@ -13,9 +16,46 @@
 			<img src="/img/logo.svg" alt="Logo">
 		</div>
 	</header>
-	<div class="container">
-		<aside></aside>
-		<main>
-		</main>
-	</div>
+	<main class="app">
+		<aside class="app__filter filter">
+			<div class="filter__group">
+				<div class="filter__header">Количество пересадок</div>
+				<div class="filter__content">
+					<div class="filter__f-row">
+						<label class="filter__label">
+							<input type="checkbox" /> Все
+						</label>
+					</div>
+					<div class="filter__f-row">
+						<label class="filter__label">
+							<input type="checkbox" /> Без пересадок
+						</label>
+					</div>
+					<div class="filter__f-row">
+						<label class="filter__label">
+							<input type="checkbox" /> 1 пересадка
+						</label>
+					</div>
+					<div class="filter__f-row">
+						<label class="filter__label">
+							<input type="checkbox" /> 2 пересадки
+						</label>
+					</div>
+				</div>
+			</div>
+		</aside>
+		<div class="app__content">
+			<section class="app__sort sort-list">
+				<div class="sort-list__item">
+					<input type="radio" name="" value="cheap" />
+				</div>
+				<div class="sort-list__item">
+					<input type="radio" name="" value="fast" />
+				</div>
+				<div class="sort-list__item">
+					<input type="radio" name="" value="optimal" />
+				</div>
+			</section>
+		</div>
+	</main>
 </div>

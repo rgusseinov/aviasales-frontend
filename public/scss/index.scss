@@ -5,8 +5,63 @@
 
 body {
 	background-color: #F3F7FA;
+	font-family: 'Open Sans', sans-serif;
 }
+
+$main-color: #4A4A4A;
+$blue-color: #2196F3;
 
 aside {
 	max-width: 230px;
+}
+
+.app {
+	display: flex;
+
+	&__filter {
+		background: #FFFFFF;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 5px;
+		min-width: 230px;
+	}
+
+	.filter {
+		&__header {
+			margin-bottom: 10px;
+		}
+
+		&__group {
+			padding: 10px;
+		}
+
+		&__f-row {
+			margin-bottom: 10px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&__label {}
+	}
+
+	.filter__header {
+		font-family: 'Open Sans';
+		font-style: normal;
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 12px;
+
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+
+		color: $main-color;
+	}
+
+
+	&__content {
+		.sort-list {
+			display: flex;
+		}
+	}
 }
