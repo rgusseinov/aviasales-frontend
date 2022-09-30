@@ -13,35 +13,23 @@
 <div class="wrapper">
 	<header>
 		<div class="block-logo">
-			<img src="/img/logo.svg" alt="Logo">
+			<!-- <img src="/img/logo.svg" alt="Logo"> -->
 		</div>
 	</header>
 	<main class="app">
 		<aside class="app__filter filter">
 			<div class="filter__group">
 				<div class="filter__header">Количество пересадок</div>
-				<div class="filter__content">
-					<div class="filter__f-row">
-						<label class="filter__label">
-							<input type="checkbox" /> Все
+				<div class="filter__content filter-stops">
+					<div class="filter__row">
+						<label class="filter-checkbox">
+							<input type="checkbox" class="filter-checkbox__input" /> Все
+							<div class="filter-checkbox__hidden"></div>
 						</label>
 					</div>
-					<div class="filter__f-row">
-						<label class="filter__label">
-							<input type="checkbox" /> Без пересадок
-						</label>
-					</div>
-					<div class="filter__f-row">
-						<label class="filter__label">
-							<input type="checkbox" /> 1 пересадка
-						</label>
-					</div>
-					<div class="filter__f-row">
-						<label class="filter__label">
-							<input type="checkbox" /> 2 пересадки
-						</label>
-					</div>
+
 				</div>
+
 			</div>
 		</aside>
 		<div class="app__content">

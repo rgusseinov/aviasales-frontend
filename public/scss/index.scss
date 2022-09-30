@@ -1,3 +1,12 @@
+$main-color: #4A4A4A;
+$blue-color: #2196F3;
+
+header {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+
 .wrapper {
 	max-width: 755px;
 	margin: 0 auto;
@@ -7,9 +16,6 @@ body {
 	background-color: #F3F7FA;
 	font-family: 'Open Sans', sans-serif;
 }
-
-$main-color: #4A4A4A;
-$blue-color: #2196F3;
 
 aside {
 	max-width: 230px;
@@ -29,20 +35,52 @@ aside {
 		&__header {
 			margin-bottom: 10px;
 		}
-
 		&__group {
 			padding: 10px;
 		}
-
 		&__f-row {
 			margin-bottom: 10px;
-
 			&:last-child {
 				margin-bottom: 0;
 			}
 		}
+		
+    .filter-checkbox {
+      position: relative;
+      padding: 0 0 0 20px;
+      line-height: 18px;
+      
+      input:checked + .filter-checkbox__hidden {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        background-image: url('../img/filters/checked.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      &__input {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+      }
+      &__hidden {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+        border: 1px solid #5D6C7B;
+        border-radius: 2px;
+      }
+    }
 
-		&__label {}
+
 	}
 
 	.filter__header {
