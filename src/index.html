@@ -13,7 +13,7 @@
 <div class="wrapper">
 	<header>
 		<div class="block-logo">
-			<!-- <img src="/img/logo.svg" alt="Logo"> -->
+			<img src="/img/logo.svg" alt="Logo">
 		</div>
 	</header>
 	<main class="app">
@@ -23,27 +23,190 @@
 				<div class="filter__content filter-stops">
 					<div class="filter__row">
 						<label class="filter-checkbox">
-							<input type="checkbox" class="filter-checkbox__input" /> Все
-							<div class="filter-checkbox__hidden"></div>
+							<div class="filter-checkbox__wrapper">
+								<input type="checkbox" class="filter-checkbox__input" />
+								<div class="filter-checkbox__hidden"></div>
+								<span>Все</span>
+							</div>
 						</label>
 					</div>
-
+					<div class="filter__row">
+						<label class="filter-checkbox">
+							<div class="filter-checkbox__wrapper">
+								<input type="checkbox" class="filter-checkbox__input" />
+								<div class="filter-checkbox__hidden"></div>
+								<span>Без пересадок</span>
+							</div>
+						</label>
+					</div>
+					<div class="filter__row">
+						<label class="filter-checkbox">
+							<div class="filter-checkbox__wrapper">
+								<input type="checkbox" class="filter-checkbox__input" />
+								<div class="filter-checkbox__hidden"></div>
+								<span>1 пересадки</span>
+							</div>
+						</label>
+					</div>
+					<div class="filter__row">
+						<label class="filter-checkbox">
+							<div class="filter-checkbox__wrapper">
+								<input type="checkbox" class="filter-checkbox__input" />
+								<div class="filter-checkbox__hidden"></div>
+								<span>2 пересадки</span>
+							</div>
+						</label>
+					</div>
+					<div class="filter__row">
+						<label class="filter-checkbox">
+							<div class="filter-checkbox__wrapper">
+								<input type="checkbox" class="filter-checkbox__input" />
+								<div class="filter-checkbox__hidden"></div>
+								<span>3 пересадки</span>
+							</div>
+						</label>
+					</div>
 				</div>
 
 			</div>
 		</aside>
 		<div class="app__content">
-			<section class="app__sort sort-list">
-				<div class="sort-list__item">
-					<input type="radio" name="" value="cheap" />
-				</div>
-				<div class="sort-list__item">
-					<input type="radio" name="" value="fast" />
-				</div>
-				<div class="sort-list__item">
-					<input type="radio" name="" value="optimal" />
-				</div>
-			</section>
+			<ul class="app__sort sort-list">
+				<li class="sort-list__item selected">
+					<label for="sort-cheap">Самые дешевые</label>
+					<input type="radio" name="" id="sort-cheap" value="cheap" class="" />
+				</li>
+				<li class="sort-list__item">
+					<label for="sort-fast">Самый быстрый</label>
+					<input type="radio" name="" id="sort-fast" value="fast" class="" />
+				</li>
+				<li class="sort-list__item">
+					<label for="sort-optimal">Оптимальный</label>
+					<input type="radio" name="" id="sort-optimal" value="optimal" class="" />
+				</li>
+			</ul>
+
+			<div class="app__ticket-list ticket-list">
+				<article class="ticket-list__item ticket-item">
+					<div class="ticket-item__wrapper">
+						<section class="ticket-item__header">
+							<span class="ticket-item__price">13 400 Р</span>
+							<img src="../img/carrier-logo.svg" alt="Logo" class="ticket-item__logo">
+						</section>
+						<section class="ticket-item__body">
+							<div class="ticket-item__row">
+								<div class="ticket-item__route">
+									MOW – HKT
+									<span>10:45 – 08:00</span>
+								</div>
+								<div class="ticket-item__route">
+									В пути
+									<span>21ч 15м</span>
+								</div>
+								<div class="ticket-item__route">
+									2 пересадки
+									<span>HKG, JNB</span>
+								</div>
+							</div>
+							<div class="ticket-item__row">
+								<div class="ticket-item__route">
+									MOW – HKT
+									<span>11:20 – 00:50</span>
+								</div>
+								<div class="ticket-item__route">
+									В пути
+									<span>13ч 30м</span>
+								</div>
+								<div class="ticket-item__route">
+									1 пересадка
+									<span>HKG</span>
+								</div>
+							</div>
+						</section>
+					</div>
+				</article>
+
+				<article class="ticket-list__item ticket-item">
+					<div class="ticket-item__wrapper">
+						<section class="ticket-item__header">
+							<span class="ticket-item__price">13 400 Р</span>
+							<img src="../img/carrier-logo.svg" alt="Logo" class="ticket-item__logo">
+						</section>
+						<section class="ticket-item__body">
+							<div class="ticket-item__row">
+								<div class="ticket-item__route">
+									MOW – HKT
+									<span>10:45 – 08:00</span>
+								</div>
+								<div class="ticket-item__route">
+									В пути
+									<span>21ч 15м</span>
+								</div>
+								<div class="ticket-item__route">
+									2 пересадки
+									<span>HKG, JNB</span>
+								</div>
+							</div>
+							<div class="ticket-item__row">
+								<div class="ticket-item__route">
+									MOW – HKT
+									<span>11:20 – 00:50</span>
+								</div>
+								<div class="ticket-item__route">
+									В пути
+									<span>13ч 30м</span>
+								</div>
+								<div class="ticket-item__route">
+									1 пересадка
+									<span>HKG</span>
+								</div>
+							</div>
+						</section>
+					</div>
+				</article>
+
+				<article class="ticket-list__item ticket-item">
+					<div class="ticket-item__wrapper">
+						<section class="ticket-item__header">
+							<span class="ticket-item__price">13 400 Р</span>
+							<img src="../img/carrier-logo.svg" alt="Logo" class="ticket-item__logo">
+						</section>
+						<section class="ticket-item__body">
+							<div class="ticket-item__row">
+								<div class="ticket-item__route">
+									MOW – HKT
+									<span>10:45 – 08:00</span>
+								</div>
+								<div class="ticket-item__route">
+									В пути
+									<span>21ч 15м</span>
+								</div>
+								<div class="ticket-item__route">
+									2 пересадки
+									<span>HKG, JNB</span>
+								</div>
+							</div>
+							<div class="ticket-item__row">
+								<div class="ticket-item__route">
+									MOW – HKT
+									<span>11:20 – 00:50</span>
+								</div>
+								<div class="ticket-item__route">
+									В пути
+									<span>13ч 30м</span>
+								</div>
+								<div class="ticket-item__route">
+									1 пересадка
+									<span>HKG</span>
+								</div>
+							</div>
+						</section>
+					</div>
+				</article>
+
+			</div>
+
+			<div class="app__loadmore-tickets">Показать еще 5 билетов!</div>
 		</div>
 	</main>
 </div>
