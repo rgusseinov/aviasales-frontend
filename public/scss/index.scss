@@ -1,0 +1,279 @@
+$main-color: #4A4A4A;
+$blue-color: #2196F3;
+
+header {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+
+.wrapper {
+	max-width: 755px;
+	margin: 0 auto;
+}
+
+body {
+	background-color: #F3F7FA;
+	font-family: 'Open Sans', sans-serif;
+}
+
+aside {
+	max-width: 230px;
+}
+
+.app {
+	display: flex;
+	min-width: 755px;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	&__filter {
+		background: #FFFFFF;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 5px;
+		min-width: 230px;
+		min-height: 252px;
+	}
+
+	.filter {
+		&__header {
+			margin-bottom: 10px;
+			font-size: 12px;
+			font-weight: 600;
+			font-size: 12px;
+			line-height: 12px;
+
+			display: flex;
+			align-items: flex-end;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+		}
+
+		&__row {
+			padding-left: 20px;
+
+			&:hover {
+				background-color: #F1FCFF;
+				cursor: pointer;
+			}
+		}
+
+		label {
+			display: block;
+			padding: 10px 0;
+		}
+
+		.filter-checkbox {
+			line-height: 18px;
+			margin-left: -20px;
+			display: flex;
+			align-items: center;
+
+			span {
+				margin-left: 10px;
+			}
+
+			input:checked+.filter-checkbox__hidden {
+				width: 20px;
+				height: 20px;
+				background-color: #fff;
+				border: 0;
+				border-radius: 2px;
+				background-image: url('../img/filters/checked.svg');
+				background-repeat: no-repeat;
+				background-position: center;
+				transition: ease-in 0.1s;
+			}
+
+			&__input {
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+			}
+
+			&__hidden {
+				margin-left: -7px;
+				width: 20px;
+				height: 20px;
+				background-image: url('../img/filters/off.svg');
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+
+			&__wrapper {
+				display: flex;
+				justify-content: center;
+				margin-left: 20px;
+			}
+
+		}
+	}
+
+	.filter__header {
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 12px;
+		padding: 20px 0 0 20px;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: $main-color;
+		margin-bottom: 10px;
+	}
+
+	&__sort {
+		width: 502px;
+		list-style: none;
+		display: flex;
+		padding: 0;
+		margin-bottom: 20px;
+		margin-top: 0;
+
+		li {
+			background-color: #fff;
+			height: 48px;
+			min-width: 165px;
+			color: #4A4A4A;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 600;
+			font-size: 12px;
+			line-height: 20px;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			border: 1px solid #DFE5EC;
+
+			&:first-child {
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			&:last-child {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+
+			&:hover {
+				cursor: pointer;
+				opacity: 0.8;
+				transition: ease-in 0.2s;
+			}
+		}
+
+		li:not(.selected):hover {
+			background-color: $blue-color;
+			color: #fff;
+			opacity: 1;
+			border: 1px solid $blue-color;
+		}
+
+		label {
+			padding: 14px 20px;
+		}
+
+		li.selected {
+			background-color: $blue-color;
+			border: 1px solid $blue-color;
+			color: #fff;
+		}
+
+		li input {
+			width: 0;
+			display: none;
+		}
+	}
+
+	.ticket-item {
+		width: 502px;
+		height: 184px;
+
+		background: #FFFFFF;
+		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+		border-radius: 5px;
+
+		margin-bottom: 20px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&:hover {
+			box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+			transition: ease-in 0.2s;
+		}
+
+		&__wrapper {
+			padding: 20px;
+		}
+
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
+
+		&__price {
+			font-weight: 600;
+			font-size: 24px;
+			line-height: 24px;
+			display: flex;
+			align-items: center;
+			color: #2196F3;
+		}
+
+		&__row {
+			display: flex;
+			justify-content: space-between;
+
+			&:first-child {
+				margin-bottom: 15px;
+			}
+		}
+
+		&__route {
+			font-family: 'Open Sans';
+			display: flex;
+			width: 140px;
+			flex-direction: column;
+			font-weight: 600;
+			font-size: 12px;
+			line-height: 18px;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+			color: #A0B0B9;
+
+			span {
+				font-weight: 600;
+				font-size: 14px;
+				line-height: 21px;
+
+				color: #4A4A4A;
+			}
+		}
+	}
+
+	&__loadmore-tickets {
+		background-color: $blue-color;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 5px;
+		min-height: 50px;
+		width: 100%;
+		margin-top: 20px;
+
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 20px;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: #FFFFFF;
+
+		&:hover {
+			cursor: pointer;
+			opacity: 0.8;
+			transition: ease-in 0.2s;
+		}
+	}
+}

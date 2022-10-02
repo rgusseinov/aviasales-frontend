@@ -1,2 +1,2 @@
 /* eslint-disable linebreak-style */
-import "./scss/index.scss";
+import "../public/scss/index.scss";
