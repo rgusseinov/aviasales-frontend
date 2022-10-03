@@ -1,3 +1,5 @@
+import { createElement } from "../utils/render";
+
 const createTicketMarkup = () => (`<article class="ticket-list__item ticket-item">
 <div class="ticket-item__wrapper">
   <section class="ticket-item__header">
@@ -38,7 +40,19 @@ const createTicketMarkup = () => (`<article class="ticket-list__item ticket-item
 </article>`);
 
 export default class Ticket {
+  constructor() {
+    this._element = null;
+  }
+
   getTemplate() {
     return createTicketMarkup();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
   }
 }

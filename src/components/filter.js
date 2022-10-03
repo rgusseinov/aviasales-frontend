@@ -1,3 +1,5 @@
+import { createElement } from "../utils/render";
+
 const createFilterMarkup = () => (`<aside class="app__filter filter">
   <div class="filter__group">
     <div class="filter__header">Количество пересадок</div>
@@ -52,7 +54,19 @@ const createFilterMarkup = () => (`<aside class="app__filter filter">
   </aside>`);
 
 export default class Filter {
+  constructor() {
+    this._element = null;
+  }
+
   getTemplate() {
     return createFilterMarkup();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
   }
 }

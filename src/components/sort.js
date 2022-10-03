@@ -1,3 +1,5 @@
+import { createElement } from "../utils/render";
+
 const createSortMarkup = () => (`<ul class="app__sort sort-list">
                                     <li class="sort-list__item selected">
                                       <label for="sort-cheap">Самые дешевые</label>
@@ -14,7 +16,19 @@ const createSortMarkup = () => (`<ul class="app__sort sort-list">
                                   </ul>`);
 
 export default class Sort {
+  constructor() {
+    this._element = null;
+  }
+
   getTemplate() {
     return createSortMarkup();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
   }
 }
