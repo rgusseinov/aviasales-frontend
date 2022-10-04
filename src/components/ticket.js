@@ -1,4 +1,4 @@
-import { createElement } from "../utils/render";
+import { AbstractComponent } from "./abstract-component";
 
 const createTicketMarkup = () => (`<article class="ticket-list__item ticket-item">
 <div class="ticket-item__wrapper">
@@ -39,20 +39,8 @@ const createTicketMarkup = () => (`<article class="ticket-list__item ticket-item
 </div>
 </article>`);
 
-export default class Ticket {
-  constructor() {
-    this._element = null;
-  }
-
+export default class Ticket extends AbstractComponent {
   getTemplate() {
     return createTicketMarkup();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
   }
 }

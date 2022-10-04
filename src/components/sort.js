@@ -1,4 +1,4 @@
-import { createElement } from "../utils/render";
+import { AbstractComponent } from "./abstract-component";
 
 const createSortMarkup = () => (`<ul class="app__sort sort-list">
                                     <li class="sort-list__item selected">
@@ -15,20 +15,8 @@ const createSortMarkup = () => (`<ul class="app__sort sort-list">
                                     </li>
                                   </ul>`);
 
-export default class Sort {
-  constructor() {
-    this._element = null;
-  }
-
+export default class Sort extends AbstractComponent {
   getTemplate() {
     return createSortMarkup();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
   }
 }

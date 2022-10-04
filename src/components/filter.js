@@ -1,4 +1,4 @@
-import { createElement } from "../utils/render";
+import { AbstractComponent } from "./abstract-component";
 
 const createFilterMarkup = () => (`<aside class="app__filter filter">
   <div class="filter__group">
@@ -53,20 +53,8 @@ const createFilterMarkup = () => (`<aside class="app__filter filter">
     </div>
   </aside>`);
 
-export default class Filter {
-  constructor() {
-    this._element = null;
-  }
-
+export default class Filter extends AbstractComponent {
   getTemplate() {
     return createFilterMarkup();
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
   }
 }
