@@ -1,27 +1,26 @@
 /* eslint-disable linebreak-style */
-import "../public/scss/index.scss";
 import Filter from "./components/filter";
 import LoadMoreButton from "./components/load-more-button";
 import Sort from "./components/sort";
 import Ticket from "./components/ticket";
+import { tickets } from "./mock/tickets";
 import { render } from "./utils/render";
-
-const TICKET_COUNT = 5;
+import "../public/scss/index.scss";
 
 const appMainElement = document.querySelector("#app");
 const appContentElement = document.querySelector(".app__content");
 const appTicketListElement = document.querySelector(".ticket-list");
 
 const filter = new Filter();
-const sort = new Sort();
-const ticket = new Ticket();
-const loadMoreButton = new LoadMoreButton();
-
 render(appMainElement, filter, "afterbegin");
+
+const sort = new Sort();
 render(appContentElement, sort, "afterbegin");
 
-for (let i = 0; i < TICKET_COUNT; i += 1) {
+tickets.forEach(ticketItem => {
+  const ticket = new Ticket(ticketItem);
   render(appTicketListElement, ticket, "afterbegin");
-}
+});
 
+const loadMoreButton = new LoadMoreButton();
 render(appTicketListElement, loadMoreButton, "beforeend");
