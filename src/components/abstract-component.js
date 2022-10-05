@@ -3,14 +3,14 @@ import { createElement } from "../utils/render";
 export class AbstractComponent {
   constructor() {
     if (new.target === AbstractComponent) {
-      throw new Error("Can't instantiate AbstractComponent, only concrete one.")
+      throw new Error("Can't instantiate AbstractComponent, only concrete one.");
     }
 
     this._element = null;
   }
 
   getTemplate() {
-    throw new Error('Method getTemplate not implemented');
+    throw new Error("Method getTemplate not implemented");
   }
 
   getElement() {

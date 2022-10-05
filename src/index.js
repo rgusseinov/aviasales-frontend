@@ -17,7 +17,7 @@ render(appMainElement, filter, "afterbegin");
 const sort = new Sort();
 render(appContentElement, sort, "afterbegin");
 
-tickets.forEach(ticketItem => {
+tickets.forEach((ticketItem) => {
   const ticket = new Ticket(ticketItem);
   render(appTicketListElement, ticket, "afterbegin");
 });
