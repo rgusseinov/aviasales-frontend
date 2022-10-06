@@ -1,60 +1,58 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable lines-between-class-members */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable space-before-blocks */
+/* eslint-disable arrow-body-style */
+
+import { filters } from "../utils/filter";
 import { AbstractComponent } from "./abstract-component";
 
-const createFilterMarkup = () => (`<aside class="app__filter filter">
-  <div class="filter__group">
-    <div class="filter__header">Количество пересадок</div>
-    <div class="filter__content filter-stops">
-      <div class="filter__row">
-        <label class="filter-checkbox">
-          <div class="filter-checkbox__wrapper">
-            <input type="checkbox" class="filter-checkbox__input" />
-            <div class="filter-checkbox__hidden"></div>
-            <span>Все</span>
-          </div>
-        </label>
-      </div>
-      <div class="filter__row">
-        <label class="filter-checkbox">
-          <div class="filter-checkbox__wrapper">
-            <input type="checkbox" class="filter-checkbox__input" />
-            <div class="filter-checkbox__hidden"></div>
-            <span>Без пересадок</span>
-          </div>
-        </label>
-      </div>
-      <div class="filter__row">
-        <label class="filter-checkbox">
-          <div class="filter-checkbox__wrapper">
-            <input type="checkbox" class="filter-checkbox__input" />
-            <div class="filter-checkbox__hidden"></div>
-            <span>1 пересадки</span>
-          </div>
-        </label>
-      </div>
-      <div class="filter__row">
-        <label class="filter-checkbox">
-          <div class="filter-checkbox__wrapper">
-            <input type="checkbox" class="filter-checkbox__input" />
-            <div class="filter-checkbox__hidden"></div>
-            <span>2 пересадки</span>
-          </div>
-        </label>
-      </div>
-      <div class="filter__row">
-        <label class="filter-checkbox">
-          <div class="filter-checkbox__wrapper">
-            <input type="checkbox" class="filter-checkbox__input" />
-            <div class="filter-checkbox__hidden"></div>
-            <span>3 пересадки</span>
-          </div>
-        </label>
-      </div>
-    </div>
-    </div>
-  </aside>`);
+const createFilterMarkup = (filter) => {
+  const { type, name } = filter;
+  return (`<div class="filter__row">
+            <label class="filter-checkbox">
+              <div class="filter-checkbox__wrapper">
+                <input type="checkbox" class="filter-checkbox__input" name="filter" data-filter-type="${type}" value="${type}" />
+                <div class="filter-checkbox__hidden"></div>
+                <span>${name}</span>
+              </div>
+            </label>
+          </div>`);
+};
+
+const createFilterTemplate = () => {
+  const filterTemplate = filters.map((filter) => createFilterMarkup(filter));
+
+  return `<aside class="app__filter filter">
+            <div class="filter__group">
+              <div class="filter__header">Количество пересадок</div>
+              <div class="filter__content filter-stops">
+                ${filterTemplate.join("")}
+              </div>
+              </div>
+            </aside>`;
+};
 
 export default class Filter extends AbstractComponent {
+  constructor(){
+    super();
+
+    this._currentFilterType = null;
+  }
   getTemplate() {
-    return createFilterMarkup();
+    return createFilterTemplate();
+  }
+
+  setFilterClickHandler(handler) {
+    this.getElement().addEventListener("change", (evt) => {
+      const { filterType } = evt.target.dataset;
+
+      if (filterType === this._currentFilterType) {
+        return;
+      }
+
+      this._currentFilterType = filterType;
+      handler(evt.target.value);
+    });
   }
 }
