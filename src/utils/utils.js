@@ -1,4 +1,5 @@
 export const getCarrierLogo = (carrier) => `https://pics.avs.io/99/36/${carrier}.png`;
+export const SHOWING_TICKETS_ON_START = 5;
 
 export function convertMinuteToHM(minutes) {
   let rhours; let minute; let
@@ -36,4 +37,12 @@ export const getStopsSentense = (countStops) => {
     default:
       return `${countStops} пересадок`;
   }
+};
+
+export const FilterType = {
+  ALL: "all",
+  ONE_STOP: "oneStop",
+  TWO_STOPS: "twoStops",
+  THREE_STOPS: "threeStops",
+  FOUR_STOPS: "fourStops",
 };

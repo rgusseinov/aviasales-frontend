@@ -43,7 +43,7 @@ export default class Filter extends AbstractComponent {
     return createFilterTemplate();
   }
 
-  setFilterClickHandler(handler) {
+  setFilterChangeHandler(handler) {
     this.getElement().addEventListener("change", (evt) => {
       const { filterType } = evt.target.dataset;
 
