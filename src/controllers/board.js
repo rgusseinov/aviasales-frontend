@@ -43,7 +43,6 @@ export class BoardController {
 
   _updateTickets(count) {
     this._removeTickets();
-    // console.log(this._ticketsModel.getTickets());
     this._renderTickets(this._ticketsModel.getTickets().slice(0, count));
     this._renderLoadMoreButton();
   }

@@ -36,8 +36,6 @@ const createFilterTemplate = () => {
 export default class Filter extends AbstractComponent {
   constructor(){
     super();
-
-    this._currentFilterType = null;
   }
   getTemplate() {
     return createFilterTemplate();
@@ -45,13 +43,6 @@ export default class Filter extends AbstractComponent {
 
   setFilterChangeHandler(handler) {
     this.getElement().addEventListener("change", (evt) => {
-      const { filterType } = evt.target.dataset;
-
-      if (filterType === this._currentFilterType) {
-        return;
-      }
-
-      this._currentFilterType = filterType;
       handler(evt.target.value);
     });
   }

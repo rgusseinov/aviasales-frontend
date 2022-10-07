@@ -1,18 +1,17 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-underscore-dangle */
 import { getTicketsByFilter } from "../utils/filter";
-import { FilterType } from "../utils/utils";
 
 export default class TicketsModel {
   constructor(tickets) {
     this._tickets = tickets;
-    this._activeFilterType = FilterType.ALL;
 
+    this._filters = [];
     this._filterChangeHandlers = []; //  Должны реагировать на изминения фильтров
   }
 
   getTickets() {
-    return getTicketsByFilter(this._tickets, this._activeFilterType);
+    return getTicketsByFilter(this._tickets, this._filters);
   }
 
   getTicketsAll() {
@@ -24,8 +23,12 @@ export default class TicketsModel {
   }
 
   setFilter(filterType) {
-    // console.log(`handlers`, this._filterChangeHandlers);
-    this._activeFilterType = filterType;
+    if (!this._filters.includes(filterType)){
+      this._filters.push(filterType);
+    } else if (this._filters.includes(filterType)){
+      this._filters = this._filters.filter(item => item !== filterType)
+    }
+    // console.log(`filters`, this._filters);
     this._callHandlers(this._filterChangeHandlers);
   }
 
@@ -33,9 +36,9 @@ export default class TicketsModel {
     handlers.forEach((handler) => handler());
   }
 
-  setActiveFilterType(type) {
-    this._activeFilterType = type;
-  }
+  /* setActiveFilterType(type) {
+    // this._activeFilterType = type;
+  } */
 
   setFilterChangeHandler(handler) {
     this._filterChangeHandlers.push(handler);

@@ -17,18 +17,18 @@ export class FilterController {
   render() {
     const container = this._container;
 
-    const filters = Object.values(FilterType).map((filterType) => ({
+    /* const filters = Object.values(FilterType).map((filterType) => ({
       name: filterType,
-      checked: filterType === this._activeFilterType,
-    }));
+      // checked: filterType === this._activeFilterType,
+    })); */
 
-    this._filterComponent = new Filter(filters);
+    this._filterComponent = new Filter();
     render(container, this._filterComponent, "afterbegin");
     this._filterComponent.setFilterChangeHandler(this._onFilterChange);
   }
 
   _onFilterChange(filterType) {
     this._ticketsModel.setFilter(filterType);
-    this._activeFilterType = filterType;
+    // this._activeFilterType = filterType;
   }
 }

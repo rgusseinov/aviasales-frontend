@@ -1,8 +1,9 @@
-import { convertMinuteToHM, getArrivalTime, getStopsSentense } from "../utils/utils";
+import { convertMinuteToHM, getArrivalTime, getCarrierLogo, getStopsSentense } from "../utils/utils";
 import { AbstractComponent } from "./abstract-component";
 
 const createTicketMarkup = (ticket) => {
-  const { segments } = ticket;
+  const { price, carrier, segments } = ticket;
+  const carrierLogo = getCarrierLogo(carrier);
 
   const segmentMarkup = segments.map((segment) => {
     const {
@@ -32,8 +33,8 @@ const createTicketMarkup = (ticket) => {
   return (`<article class="ticket-list__item ticket-item">
             <div class="ticket-item__wrapper">
               <section class="ticket-item__header">
-                <span class="ticket-item__price">-</span>
-                <img src="#" alt="Logo" class="ticket-item__logo">
+                <span class="ticket-item__price">${price} Р.</span>
+                <img src="${carrierLogo}" alt="Logo" class="ticket-item__logo">
               </section>
               <section class="ticket-item__body">
                 ${segmentMarkup}
@@ -46,8 +47,6 @@ export default class Ticket extends AbstractComponent {
   constructor(ticket) {
     super();
     this._ticket = ticket;
-
-    // this._tasksModel.setFilterChangeHandler(this._onFilterChange);
   }
 
   getTemplate() {

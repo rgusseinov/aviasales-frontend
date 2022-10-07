@@ -41,8 +41,8 @@ export const getStopsSentense = (countStops) => {
 
 export const FilterType = {
   ALL: "all",
+  DIRECT: 'direct',
   ONE_STOP: "oneStop",
   TWO_STOPS: "twoStops",
   THREE_STOPS: "threeStops",
-  FOUR_STOPS: "fourStops",
 };
