@@ -21,7 +21,7 @@ export class BoardController {
     this._ticketsModel.setFilterChangeHandler(this._onFilterChange);
 
     this._filterComponent = null;
-    this._onFilterChange = this._onFilterChange.bind(this);
+    // this._onFilterChange = this._onFilterChange.bind(this);
   }
 
   render() {

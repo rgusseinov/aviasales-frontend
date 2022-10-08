@@ -31,15 +31,15 @@ const createTicketMarkup = (ticket) => {
   }).join(" ");
 
   return (`<article class="ticket-list__item ticket-item">
-            <div class="ticket-item__wrapper">
-              <section class="ticket-item__header">
-                <span class="ticket-item__price">${price} Р.</span>
-                <img src="${carrierLogo}" alt="Logo" class="ticket-item__logo">
-              </section>
-              <section class="ticket-item__body">
-                ${segmentMarkup}
-              </section>
-            </div>
+             <div class="ticket-item__wrapper">
+                <section class="ticket-item__header">
+                  <span class="ticket-item__price">${price} Р.</span>
+                  <img src="${carrierLogo}" alt="Logo" class="ticket-item__logo">
+                </section>
+                <section class="ticket-item__body">
+                  ${segmentMarkup}
+                </section>
+              </div>
             </article>`);
 };
 

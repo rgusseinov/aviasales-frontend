@@ -3,7 +3,6 @@
 /* eslint-disable no-undef */
 import Filter from "../components/filter";
 import { render } from "../utils/render";
-import { FilterType } from "../utils/utils";
 
 export class FilterController {
   constructor(container, ticketsModel) {
@@ -11,24 +10,26 @@ export class FilterController {
     this._ticketsModel = ticketsModel;
 
     this._filterComponent = null;
+    this._onDataChange = this._onDataChange.bind(this);
     this._onFilterChange = this._onFilterChange.bind(this);
+
+    this._ticketsModel.setDataChangeHandler(this._onDataChange);
   }
 
   render() {
     const container = this._container;
 
-    /* const filters = Object.values(FilterType).map((filterType) => ({
-      name: filterType,
-      // checked: filterType === this._activeFilterType,
-    })); */
-
     this._filterComponent = new Filter();
     render(container, this._filterComponent, "afterbegin");
+
     this._filterComponent.setFilterChangeHandler(this._onFilterChange);
   }
 
   _onFilterChange(filterType) {
     this._ticketsModel.setFilter(filterType);
-    // this._activeFilterType = filterType;
+  }
+
+  _onDataChange() {
+    this.render();
   }
 }

@@ -7,6 +7,7 @@ export default class TicketsModel {
     this._tickets = tickets;
 
     this._filters = [];
+    this._dataChangeHandlers = []; // Должны реагировать на изминения данных
     this._filterChangeHandlers = []; //  Должны реагировать на изминения фильтров
   }
 
@@ -20,6 +21,7 @@ export default class TicketsModel {
 
   setTickets(tickets) {
     this._tickets = Array.from(tickets);
+    this._callHandlers(this._dataChangeHandlers);
   }
 
   setFilter(filterType) {
@@ -28,17 +30,20 @@ export default class TicketsModel {
     } else if (this._filters.includes(filterType)){
       this._filters = this._filters.filter(item => item !== filterType)
     }
-    // console.log(`filters`, this._filters);
     this._callHandlers(this._filterChangeHandlers);
+  }
+
+  getFilters() {
+    return this._filters;
   }
 
   _callHandlers(handlers) {
     handlers.forEach((handler) => handler());
   }
 
-  /* setActiveFilterType(type) {
-    // this._activeFilterType = type;
-  } */
+  setDataChangeHandler(handler) {
+    this._dataChangeHandlers.push(handler);
+  }
 
   setFilterChangeHandler(handler) {
     this._filterChangeHandlers.push(handler);

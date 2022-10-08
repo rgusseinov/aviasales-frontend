@@ -12,7 +12,13 @@ const createFilterMarkup = (filter) => {
   return (`<div class="filter__row">
             <label class="filter-checkbox">
               <div class="filter-checkbox__wrapper">
-                <input type="checkbox" class="filter-checkbox__input" name="filter" data-filter-type="${type}" value="${type}" />
+                <input
+                  type="checkbox"
+                  class="filter-checkbox__input"
+                  name="filter"
+                  data-filter-type="${type}"
+                  value="${type}"
+                />
                 <div class="filter-checkbox__hidden"></div>
                 <span>${name}</span>
               </div>
@@ -34,9 +40,10 @@ const createFilterTemplate = () => {
 };
 
 export default class Filter extends AbstractComponent {
-  constructor(){
+  constructor() {
     super();
   }
+
   getTemplate() {
     return createFilterTemplate();
   }
