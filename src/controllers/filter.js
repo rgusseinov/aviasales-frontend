@@ -10,10 +10,7 @@ export class FilterController {
     this._ticketsModel = ticketsModel;
 
     this._filterComponent = null;
-    this._onDataChange = this._onDataChange.bind(this);
     this._onFilterChange = this._onFilterChange.bind(this);
-
-    this._ticketsModel.setDataChangeHandler(this._onDataChange);
   }
 
   render() {
@@ -27,9 +24,5 @@ export class FilterController {
 
   _onFilterChange(filterType) {
     this._ticketsModel.setFilter(filterType);
-  }
-
-  _onDataChange() {
-    this.render();
   }
 }

@@ -1,5 +1,28 @@
 export const getCarrierLogo = (carrier) => `https://pics.avs.io/99/36/${carrier}.png`;
-export const SHOWING_TICKETS_ON_START = 5;
+export const SHOWING_TICKETS_ON_START = 2;
+export const SHOWING_TICKETS_ON_LOAD = 2;
+
+export const FilterType = {
+  ALL: "all",
+  DIRECT: 'direct',
+  ONE_STOP: "oneStop",
+  TWO_STOPS: "twoStops",
+  THREE_STOPS: "threeStops",
+};
+
+export const FILTER_TYPES = {
+  all: false,
+  direct: false,
+  oneStop: false,
+  twoStops: false,
+  threeStops: false,
+}
+
+export const SortType = {
+  CHEAP: "cheap",
+  FAST: "fast",
+  OPTIMAL: "optmal"
+};
 
 export function convertMinuteToHM(minutes) {
   let rhours; let minute; let
@@ -39,10 +62,23 @@ export const getStopsSentense = (countStops) => {
   }
 };
 
-export const FilterType = {
-  ALL: "all",
-  DIRECT: 'direct',
-  ONE_STOP: "oneStop",
-  TWO_STOPS: "twoStops",
-  THREE_STOPS: "threeStops",
+export function sortByPrice(ticketA, ticketB){
+  if (ticketA.price > ticketB.price) return 1;
+  if (ticketA.price < ticketB.price) return -1;
+  return 0;
+}
+
+export const sortByFlightTime = (ticketA, ticketB) => {
+  const flightFrom = ticketA.segments[0].duration + ticketA.segments[1].duration;
+  const flightTo = ticketB.segments[0].duration + ticketB.segments[1].duration;
+
+  if (flightFrom > flightTo) return 1; else if (flightFrom < flightTo) return -1;
+  return 0;
+};
+
+export const filterByStops = (tickets, stops) => {
+  return tickets.filter(ticket => {
+    const [first, second] = ticket.segments;
+    return first.stops.length === stops && second.stops.length === stops;
+  });
 };

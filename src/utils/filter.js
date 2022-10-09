@@ -2,34 +2,44 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable default-case */
 /* eslint-disable import/prefer-default-export */
-import { FilterType } from "./utils";
+import { filterByStops, sortByFlightTime, sortByPrice } from "./utils";
 
 export const filters = [{
   type: "all",
   name: "Все",
 },{
-  type: 0,
+  type: "direct",
   name: "Без пересадки",
 },{
-  type: 1,
+  type: "oneStop",
   name: "1 пересадка",
 },{
-  type: 2,
+  type: "twoStops",
   name: "2 пересадки",
 },{
-  type: 3,
+  type: "threeStops",
   name: "3 пересадки",
 }];
 
-export const getTicketsByFilter = (tickets, filterTypes) => {
-  const isAllExist = filterTypes.find(filterType => filterType === 'all');
-  if (isAllExist) return tickets;
+export const getTicketsByFilter = (tickets, filterType) => {
+  let result = [];
+  if (filterType.direct){
+    result.push(...filterByStops(tickets, 0));
+  }
+  
+  if (filterType.oneStop){
+    result.push(...filterByStops(tickets, 1));
+  }
 
-  const filterTypesArr = filterTypes.map(Number);
-  if (!filterTypesArr.length) return tickets;
+  if (filterType.twoStops){
+    result.push(...filterByStops(tickets, 2));
+  }
 
-  return tickets.filter((ticket) => {
-    return filterTypesArr.includes(ticket.segments[0].stops.length) && 
-    filterTypesArr.includes(ticket.segments[1].stops.length)
-  });
+  if (filterType.threeStops){
+    result.push(...filterByStops(tickets, 3));
+  }
+  
+  if (!filterType.direct && !filterType.oneStop && !filterType.twoStops && !filterType.threeStops) result = tickets;
+  
+  return result;
 };

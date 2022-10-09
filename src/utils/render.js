@@ -8,6 +8,10 @@ export const render = (element, component, position) => {
     case "beforeend":
       element.insertAdjacentElement("beforeend", component.getElement());
       break;
+    case "afterend":
+      element.insertAdjacentElement("afterend", component.getElement());
+      break;
+
   }
 };
 
@@ -17,3 +21,9 @@ export const createElement = (template) => {
 
   return element.firstChild;
 };
+
+
+export const remove =(component) => {
+  component.getElement().remove();
+  component.removeElement();
+}
