@@ -2,7 +2,7 @@ import { AbstractComponent } from "./abstract-component";
 
 const createSortMarkup = () => {
   return (`<ul class="app__sort sort-list">
-              <li class="sort-list__item">
+              <li class="sort-list__item selected">
                 <label for="sort-cheap">Самые дешевые</label>
                 <input type="radio" name="sort" id="sort-cheap" value="cheap" />
               </li>
@@ -18,16 +18,6 @@ const createSortMarkup = () => {
 };
 
 export default class Sort extends AbstractComponent {
-  constructor() {
-    super();
-
-    this._currentSortType = 'cheap';
-  }
-
-  getSortType() {
-    return this._currentSortType;
-  }
-
   getTemplate() {
     return createSortMarkup();
   }
@@ -47,8 +37,6 @@ export default class Sort extends AbstractComponent {
                     .querySelector(`#sort-${evt.target.value}`)
                     .closest('li.sort-list__item');
       sortElement.classList.add('selected')
-
-      this._currentSortType = evt.target.value;
     });
   }
 }

@@ -34,10 +34,6 @@ const createFilterTemplate = () => {
 };
 
 export default class Filter extends AbstractComponent {
-  constructor() {
-    super();
-  }
-
   getTemplate() {
     return createFilterTemplate();
   }
@@ -50,11 +46,7 @@ export default class Filter extends AbstractComponent {
         
         const isFirstFilterChecked = evt.target.checked;
         const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
-        if (isFirstFilterChecked) {
-          filterElements.forEach(filter => filter.checked = true);
-        } else {
-          filterElements.forEach(filter => filter.checked = false);
-        }
+        filterElements.forEach(filter => filter.checked = isFirstFilterChecked ? true : false);
       });
   }
 
@@ -68,11 +60,8 @@ export default class Filter extends AbstractComponent {
           const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
           const isFiltersChecked = Array.from(filterElements).every(filter => filter.checked);
 
-          if (isFiltersChecked) {
-            this.getElement().querySelector('input[data-filter-type="all"]').checked = true;
-          } else {
-            this.getElement().querySelector('input[data-filter-type="all"]').checked = false;
-          }
+          const firstFilter = this.getElement().querySelector('input[data-filter-type="all"]');
+          (isFiltersChecked) ? firstFilter.checked = true : firstFilter.checked = false;
         });
       });
   }

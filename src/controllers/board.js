@@ -1,8 +1,8 @@
 import LoadMoreButton from "../components/load-more-button";
 import Sort from "../components/sort";
 import Ticket from "../components/ticket";
-import { remove, render } from "../utils/render";
 import { getSortedTickets, SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START } from "../utils/utils";
+import { remove, render } from "../utils/render";
 
 export class BoardController {
   constructor(container, ticketsModel) {

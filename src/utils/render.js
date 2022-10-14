@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
 export const render = (element, component, position) => {
-  // eslint-disable-next-line default-case
   switch (position) {
     case "afterbegin":
       element.insertAdjacentElement("afterbegin", component.getElement());
@@ -11,7 +9,6 @@ export const render = (element, component, position) => {
     case "afterend":
       element.insertAdjacentElement("afterend", component.getElement());
       break;
-
   }
 };
 
