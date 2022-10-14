@@ -1,13 +1,13 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-underscore-dangle */
 import { getTicketsByFilter } from "../utils/filter";
-import { FILTER_TYPES } from "../utils/utils";
+import { FilterTypes } from "../utils/utils";
 
 export default class TicketsModel {
   constructor(tickets) {
     this._tickets = tickets;
 
-    this._filterTypes = { ...FILTER_TYPES };
+    this._filterTypes = { ...FilterTypes };
+    this._sortType = null;
+
     this._filterChangeHandlers = []; //  Должны реагировать на изминения фильтров
   }
 
@@ -26,6 +26,14 @@ export default class TicketsModel {
   setFilter(filterType) {
     this._filterTypes[filterType] = !this._filterTypes[filterType];
     this._callHandlers(this._filterChangeHandlers);
+  }
+
+  setSortType(type) {
+    this._sortType = type;
+  }
+
+  getActiveSortType(){
+    return this._sortType;
   }
 
   _callHandlers(handlers) {

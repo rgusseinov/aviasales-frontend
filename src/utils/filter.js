@@ -1,8 +1,4 @@
-/* eslint-disable consistent-return */
-/* eslint-disable arrow-body-style */
-/* eslint-disable default-case */
-/* eslint-disable import/prefer-default-export */
-import { filterByStops, sortByFlightTime, sortByPrice } from "./utils";
+import { filterByStops } from "./utils";
 
 export const filters = [{
   type: "all",
@@ -39,7 +35,6 @@ export const getTicketsByFilter = (tickets, filterType) => {
     result.push(...filterByStops(tickets, 3));
   }
   
-  if (!filterType.direct && !filterType.oneStop && !filterType.twoStops && !filterType.threeStops) result = tickets;
-  
+  if ((!filterType.direct && !filterType.oneStop && !filterType.twoStops && !filterType.threeStops) || filterType.all) result = tickets;
   return result;
 };

@@ -1,16 +1,7 @@
-export const getCarrierLogo = (carrier) => `https://pics.avs.io/99/36/${carrier}.png`;
-export const SHOWING_TICKETS_ON_START = 2;
-export const SHOWING_TICKETS_ON_LOAD = 2;
+export const SHOWING_TICKETS_ON_START = 5;
+export const SHOWING_TICKETS_ON_LOAD = 5;
 
-export const FilterType = {
-  ALL: "all",
-  DIRECT: 'direct',
-  ONE_STOP: "oneStop",
-  TWO_STOPS: "twoStops",
-  THREE_STOPS: "threeStops",
-};
-
-export const FILTER_TYPES = {
+export const FilterTypes = {
   all: false,
   direct: false,
   oneStop: false,
@@ -47,6 +38,8 @@ export function getArrivalTime(date, durationMinutes) {
   return `${h}:${m}`;
 }
 
+export const getCarrierLogo = (carrier) => `https://pics.avs.io/99/36/${carrier}.png`;
+
 export const getStopsSentense = (countStops) => {
   switch (countStops) {
     case 0:
@@ -82,3 +75,22 @@ export const filterByStops = (tickets, stops) => {
     return first.stops.length === stops && second.stops.length === stops;
   });
 };
+
+
+export const getSortedTickets = (tickets, sortType, from, to) => {
+  let sortedTickets = [];
+  const showingTickets = tickets.slice();
+
+  switch (sortType) {
+    case SortType.CHEAP:
+      sortedTickets = showingTickets.sort(sortByPrice);
+      break;
+    case SortType.FAST:
+      sortedTickets = showingTickets.sort(sortByFlightTime);
+      break;
+    default:
+      sortedTickets = showingTickets;
+  }
+
+  return sortedTickets.slice(from, to);
+}

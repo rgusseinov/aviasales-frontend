@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { BoardController } from "./controllers/board";
 import { FilterController } from "./controllers/filter";
 import TicketsModel from "./models/tickets";

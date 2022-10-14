@@ -1,9 +1,3 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable lines-between-class-members */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable space-before-blocks */
-/* eslint-disable arrow-body-style */
-
 import { filters } from "../utils/filter";
 import { AbstractComponent } from "./abstract-component";
 
@@ -35,8 +29,8 @@ const createFilterTemplate = () => {
               <div class="filter__content filter-stops">
                 ${filterTemplate.join("")}
               </div>
-              </div>
-            </aside>`;
+            </div>
+          </aside>`;
 };
 
 export default class Filter extends AbstractComponent {
@@ -48,9 +42,38 @@ export default class Filter extends AbstractComponent {
     return createFilterTemplate();
   }
 
+  setFirstFilterChangeHandler(handler) {
+    this.getElement()
+      .querySelector('input[data-filter-type="all"]')
+      .addEventListener("change", (evt) => {
+        handler(evt.target.value);
+        
+        const isFirstFilterChecked = evt.target.checked;
+        const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
+        if (isFirstFilterChecked) {
+          filterElements.forEach(filter => filter.checked = true);
+        } else {
+          filterElements.forEach(filter => filter.checked = false);
+        }
+      });
+  }
+
   setFilterChangeHandler(handler) {
-    this.getElement().addEventListener("change", (evt) => {
-      handler(evt.target.value);
-    });
+    this.getElement()
+      .querySelectorAll('input:not([data-filter-type="all"])')
+      .forEach(filter => {
+        filter.addEventListener("change", (evt) => {
+          handler(evt.target.value);
+
+          const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
+          const isFiltersChecked = Array.from(filterElements).every(filter => filter.checked);
+
+          if (isFiltersChecked) {
+            this.getElement().querySelector('input[data-filter-type="all"]').checked = true;
+          } else {
+            this.getElement().querySelector('input[data-filter-type="all"]').checked = false;
+          }
+        });
+      });
   }
 }

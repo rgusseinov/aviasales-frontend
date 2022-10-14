@@ -1,13 +1,8 @@
-/* eslint-disable class-methods-use-this */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable no-undef */
-
 import LoadMoreButton from "../components/load-more-button";
 import Sort from "../components/sort";
 import Ticket from "../components/ticket";
 import { remove, render } from "../utils/render";
-import { SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START, sortByFlightTime, sortByPrice } from "../utils/utils";
+import { getSortedTickets, SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START } from "../utils/utils";
 
 export class BoardController {
   constructor(container, ticketsModel) {
@@ -28,11 +23,18 @@ export class BoardController {
   }
 
   _onFilterChange() {
-    this._updateTickets(this._showingTicketsCount);
+    this._updateTickets();
   }
 
   _onSortTypeChange(sortType) {
-    this._updateTickets(this._showingTicketsCount, sortType);
+    this._ticketsModel.setSortType(sortType);
+    this._updateTickets();
+  }
+
+  _updateTickets() {
+    this._removeTickets();
+    this._renderTickets(this._ticketsModel.getTickets());
+    this._renderLoadMoreButton();
   }
 
   render() {
@@ -40,29 +42,20 @@ export class BoardController {
     const appContentElement = document.querySelector(".app__content");
     render(appContentElement, this._sortComponent, "afterbegin");
 
-    this._renderTickets(tickets.slice(0, this._showingTicketsCount));
+    this._renderTickets(tickets);
     this._renderLoadMoreButton();
   }
 
-  _renderTickets(tickets, sortType) {
+  _renderTickets(tickets) {
     const boardComponent = this._container;
 
-    if (sortType && sortType == 'cheap'){
-      tickets = tickets.slice().sort(sortByPrice);
-    } else if (sortType && sortType == 'fast'){
-      tickets = tickets.slice().sort(sortByFlightTime);
-    }
+    const sortType = this._ticketsModel.getActiveSortType();
+    const sortedTickets = getSortedTickets(tickets, sortType, 0, this._showingTicketsCount);
 
-    tickets.forEach((ticketItem) => {
+    sortedTickets.forEach((ticketItem) => {
       const ticket = new Ticket(ticketItem);
       render(boardComponent, ticket, "beforeend");
-    }); 
-  }
-
-  _updateTickets(count, sortType = null) {
-    this._removeTickets();
-    this._renderTickets(this._ticketsModel.getTickets().slice(0, count), sortType);
-    this._renderLoadMoreButton();
+    });
   }
 
   _removeTickets() {
@@ -86,9 +79,10 @@ export class BoardController {
     const tickets = this._ticketsModel.getTickets();
 
     this._showingTicketsCount += SHOWING_TICKETS_ON_LOAD;
+    const sortType = this._ticketsModel.getActiveSortType();
+    const sortedTickets = getSortedTickets(tickets, sortType, prevTicketsCount, this._showingTicketsCount);
 
-    const filteredTickets = tickets.slice(prevTicketsCount, this._showingTicketsCount)
-    this._renderTickets(filteredTickets);
+    this._renderTickets(sortedTickets);
 
     if (this._showingTicketsCount >= tickets.length) {
       remove(this._loadMoreButtonComponent);
