@@ -12,7 +12,6 @@ export default class TicketsModel {
   }
 
   getTickets() {
-    console.log(this._filterTypes)
     return getTicketsByFilter(this._tickets, this._filterTypes);
   }
 
@@ -24,8 +23,8 @@ export default class TicketsModel {
     this._tickets = Array.from(tickets);
   }
 
-  setFilter(filterType) {
-    this._filterTypes[filterType] = !this._filterTypes[filterType];
+  setFilter(filterTypes) {
+    this._filterTypes = { ...filterTypes };
     this._callHandlers(this._filterChangeHandlers);
   }
 
@@ -33,7 +32,7 @@ export default class TicketsModel {
     this._sortType = type;
   }
 
-  getActiveSortType(){
+  getActiveSortType() {
     return this._sortType;
   }
 
