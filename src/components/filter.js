@@ -46,7 +46,14 @@ export default class Filter extends AbstractComponent {
         
         const isFirstFilterChecked = evt.target.checked;
         const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
-        filterElements.forEach(filter => filter.checked = isFirstFilterChecked ? true : false);
+
+        filterElements.forEach(filter => {
+          if (isFirstFilterChecked) {
+            filter.checked = true;
+          } else {
+            filter.checked = false;
+          }
+        });
       });
   }
 

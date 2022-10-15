@@ -12,6 +12,7 @@ export default class TicketsModel {
   }
 
   getTickets() {
+    console.log(this._filterTypes)
     return getTicketsByFilter(this._tickets, this._filterTypes);
   }
 

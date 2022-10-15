@@ -5,8 +5,9 @@ import { getSortedTickets, SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START } f
 import { remove, render } from "../utils/render";
 
 export class BoardController {
-  constructor(container, ticketsModel) {
+  constructor(container, ticketsModel, api) {
     this._container = container;
+    this._api = api;
 
     this._ticketsModel = ticketsModel;
     this._showingTicketsCount = SHOWING_TICKETS_ON_START;
@@ -32,6 +33,7 @@ export class BoardController {
   }
 
   _updateTickets() {
+    console.log(this._ticketsModel.getTickets());
     this._removeTickets();
     this._renderTickets(this._ticketsModel.getTickets());
     this._renderLoadMoreButton();
