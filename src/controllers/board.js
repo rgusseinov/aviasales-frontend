@@ -33,7 +33,6 @@ export class BoardController {
   }
 
   _updateTickets() {
-    // console.log(this._ticketsModel.getTickets());
     this._removeTickets();
     this._renderTickets(this._ticketsModel.getTickets());
     this._renderLoadMoreButton();
