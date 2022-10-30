@@ -1,4 +1,5 @@
 import { filters } from "../utils/filter";
+import { FilterTypes } from "../utils/utils";
 import { AbstractComponent } from "./abstract-component";
 
 const createFilterMarkup = (filter) => {
@@ -34,6 +35,11 @@ const createFilterTemplate = () => {
 };
 
 export default class Filter extends AbstractComponent {
+  constructor() {
+    super();
+
+    this._filterTypes = { ...FilterTypes };
+  }
   getTemplate() {
     return createFilterTemplate();
   }
@@ -42,11 +48,23 @@ export default class Filter extends AbstractComponent {
     this.getElement()
       .querySelector('input[data-filter-type="all"]')
       .addEventListener("change", (evt) => {
-        handler(evt.target.value);
-        
         const isFirstFilterChecked = evt.target.checked;
         const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
-        filterElements.forEach(filter => filter.checked = isFirstFilterChecked ? true : false);
+
+        filterElements.forEach(filter => {
+          if (isFirstFilterChecked) {
+            filter.checked = true;
+            for (let prop in this._filterTypes) {
+              this._filterTypes[prop] = true;
+            }
+          } else {
+            filter.checked = false;
+            for (let prop in this._filterTypes) {
+              this._filterTypes[prop] = false;
+            }    
+          }
+        });
+        handler(this._filterTypes);
       });
   }
 
@@ -55,13 +73,22 @@ export default class Filter extends AbstractComponent {
       .querySelectorAll('input:not([data-filter-type="all"])')
       .forEach(filter => {
         filter.addEventListener("change", (evt) => {
-          handler(evt.target.value);
-
+          const filterType = evt.target.value;
+          this._filterTypes[filterType] = !this._filterTypes[filterType];
+          
           const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
           const isFiltersChecked = Array.from(filterElements).every(filter => filter.checked);
 
           const firstFilter = this.getElement().querySelector('input[data-filter-type="all"]');
-          (isFiltersChecked) ? firstFilter.checked = true : firstFilter.checked = false;
+          if (isFiltersChecked) {
+            firstFilter.checked = true;
+            this._filterTypes['all'] = true;
+          } else {
+            firstFilter.checked = false;
+            this._filterTypes['all'] = false;
+          }
+
+          handler(this._filterTypes);
         });
       });
   }

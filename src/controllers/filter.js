@@ -18,7 +18,7 @@ export class FilterController {
     this._filterComponent.setFirstFilterChangeHandler(this._onFilterChange);
   }
 
-  _onFilterChange(filterType) {
-    this._ticketsModel.setFilter(filterType);
+  _onFilterChange(filterTypes) {
+    this._ticketsModel.setFilter(filterTypes);
   }
 }
