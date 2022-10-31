@@ -23,8 +23,8 @@ export default class TicketsModel {
     this._tickets = Array.from(tickets);
   }
 
-  setFilter(filterTypes) {
-    this._filterTypes = { ...filterTypes };
+  setFilter(filterType) {
+    this._filterTypes = { ...filterType };
     this._callHandlers(this._filterChangeHandlers);
   }
 

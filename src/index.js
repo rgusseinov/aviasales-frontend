@@ -1,4 +1,4 @@
-import { BoardController } from "./controllers/board";
+import BoardController from "./controllers/board";
 import { FilterController } from "./controllers/filter";
 import TicketsModel from "./models/tickets";
 import { API } from "./api/api";
@@ -19,4 +19,4 @@ api.getTickets()
   .then((tickets) => {
     ticketsModel.setTickets(tickets);
     boardController.render();
-  })
+  });

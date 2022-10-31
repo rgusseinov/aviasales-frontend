@@ -3,16 +3,16 @@ import { filterByStops } from "./utils";
 export const filters = [{
   type: "all",
   name: "Все",
-},{
+}, {
   type: "direct",
   name: "Без пересадки",
-},{
+}, {
   type: "oneStop",
   name: "1 пересадка",
-},{
+}, {
   type: "twoStops",
   name: "2 пересадки",
-},{
+}, {
   type: "threeStops",
   name: "3 пересадки",
 }];
@@ -27,7 +27,7 @@ export const getTicketsByFilter = (tickets, filterType) => {
     if (filterType.direct) {
       result.push(...filterByStops(tickets, 0));
     }
-    
+
     if (filterType.oneStop) {
       result.push(...filterByStops(tickets, 1));
     }

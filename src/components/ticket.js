@@ -1,4 +1,6 @@
-import { convertMinuteToHM, getArrivalTime, getCarrierLogo, getStopsSentense } from "../utils/utils";
+import {
+  convertMinuteToHM, getArrivalTime, getCarrierLogo, getStopsSentense,
+} from "../utils/utils";
 import { AbstractComponent } from "./abstract-component";
 
 const createTicketMarkup = (ticket) => {

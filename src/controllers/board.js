@@ -4,7 +4,7 @@ import Ticket from "../components/ticket";
 import { getSortedTickets, SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START } from "../utils/utils";
 import { remove, render } from "../utils/render";
 
-export class BoardController {
+export default class BoardController {
   constructor(container, ticketsModel, api) {
     this._container = container;
     this._api = api;
@@ -12,7 +12,7 @@ export class BoardController {
     this._ticketsModel = ticketsModel;
     this._showingTicketsCount = SHOWING_TICKETS_ON_START;
 
-    this._sortComponent = new Sort(); 
+    this._sortComponent = new Sort();
     this._loadMoreButtonComponent = new LoadMoreButton();
 
     this._onSortTypeChange = this._onSortTypeChange.bind(this);

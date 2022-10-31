@@ -38,57 +38,57 @@ export default class Filter extends AbstractComponent {
   constructor() {
     super();
 
-    this._filterTypes = { ...FilterTypes };
+    this._filterType = { ...FilterTypes };
   }
+
   getTemplate() {
     return createFilterTemplate();
   }
 
   setFirstFilterChangeHandler(handler) {
     this.getElement()
-      .querySelector('input[data-filter-type="all"]')
+      .querySelector("input[data-filter-type=\"all\"]")
       .addEventListener("change", (evt) => {
         const isFirstFilterChecked = evt.target.checked;
-        const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
+        const filterElements = this.getElement().querySelectorAll("input:not([data-filter-type=\"all\"])");
 
-        filterElements.forEach(filter => {
+        filterElements.forEach((filter) => {
           if (isFirstFilterChecked) {
             filter.checked = true;
-            for (let prop in this._filterTypes) {
-              this._filterTypes[prop] = true;
-            }
+            this.updateFilter(true);
           } else {
             filter.checked = false;
-            for (let prop in this._filterTypes) {
-              this._filterTypes[prop] = false;
-            }    
+            this.updateFilter(false);
           }
         });
-        handler(this._filterTypes);
+        handler(this._filterType);
       });
+  }
+
+  updateFilter(flag) {
+    Object.keys(this._filterType).forEach(prop => this._filterType[prop] = flag);
   }
 
   setFilterChangeHandler(handler) {
     this.getElement()
-      .querySelectorAll('input:not([data-filter-type="all"])')
-      .forEach(filter => {
+      .querySelectorAll("input:not([data-filter-type=\"all\"])")
+      .forEach((filter) => {
         filter.addEventListener("change", (evt) => {
           const filterType = evt.target.value;
-          this._filterTypes[filterType] = !this._filterTypes[filterType];
-          
-          const filterElements = this.getElement().querySelectorAll('input:not([data-filter-type="all"])');
-          const isFiltersChecked = Array.from(filterElements).every(filter => filter.checked);
+          this._filterType[filterType] = !this._filterType[filterType];
 
-          const firstFilter = this.getElement().querySelector('input[data-filter-type="all"]');
+          const filterElements = this.getElement().querySelectorAll("input:not([data-filter-type=\"all\"])");
+          const isFiltersChecked = Array.from(filterElements).every((filter) => filter.checked);
+
+          const firstFilter = this.getElement().querySelector("input[data-filter-type=\"all\"]");
           if (isFiltersChecked) {
             firstFilter.checked = true;
-            this._filterTypes['all'] = true;
+            this._filterType.all = true;
           } else {
             firstFilter.checked = false;
-            this._filterTypes['all'] = false;
+            this._filterType.all = false;
           }
-
-          handler(this._filterTypes);
+          handler(this._filterType);
         });
       });
   }
