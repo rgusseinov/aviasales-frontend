@@ -9,10 +9,6 @@ const createSortMarkup = () => (`<ul class="app__sort sort-list">
                 <label for="sort-fast">Самый быстрый</label>
                 <input type="radio" name="sort" id="sort-fast" value="fast" />
               </li>
-              <li class="sort-list__item">
-                <label for="sort-optimal">Оптимальный</label>
-                <input type="radio" name="sort" id="sort-optimal" value="optimal" />
-              </li>
             </ul>`);
 
 export default class Sort extends AbstractComponent {
