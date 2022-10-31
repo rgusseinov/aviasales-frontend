@@ -1,5 +1,4 @@
-import { filters } from "../utils/filter";
-import { FilterTypes } from "../utils/utils";
+import { filters, FilterType } from "../utils/filter";
 import { AbstractComponent } from "./abstract-component";
 
 const createFilterMarkup = (filter) => {
@@ -38,7 +37,7 @@ export default class Filter extends AbstractComponent {
   constructor() {
     super();
 
-    this._filterType = { ...FilterTypes };
+    this._filterType = { ...FilterType };
   }
 
   getTemplate() {
@@ -91,5 +90,12 @@ export default class Filter extends AbstractComponent {
           handler(this._filterType);
         });
       });
+  }
+
+  setFilterAccess(flag) {
+    this.getElement().querySelectorAll("input[name='filter']")
+    .forEach((filter) => {
+      filter.disabled = flag;
+    });
   }
 }

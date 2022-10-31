@@ -1,5 +1,3 @@
-import { filterByStops } from "./utils";
-
 export const filters = [{
   type: "all",
   name: "Все",
@@ -16,6 +14,19 @@ export const filters = [{
   type: "threeStops",
   name: "3 пересадки",
 }];
+
+export const FilterType = {
+  all: false,
+  direct: false,
+  oneStop: false,
+  twoStops: false,
+  threeStops: false,
+};
+
+export const filterByStops = (tickets, stops) => tickets.filter((ticket) => {
+  const [first, second] = ticket.segments;
+  return first.stops.length === stops && second.stops.length === stops;
+});
 
 export const getTicketsByFilter = (tickets, filterType) => {
   let result = [];

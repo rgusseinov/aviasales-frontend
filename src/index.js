@@ -12,12 +12,12 @@ const loaderComponent = new Loader();
 
 const api = new API();
 const ticketsModel = new TicketsModel();
-render(appMainElement, loaderComponent, "afterbegin");
+render(appMainElement, loaderComponent);
 
 const filterController = new FilterController(appMainElement, ticketsModel);
 filterController.render();
 
-const boardController = new BoardController(appTicketListElement, ticketsModel, null);
+const boardController = new BoardController(appTicketListElement, ticketsModel, filterController);
 
 api.getTickets()
   .then((tickets) => {

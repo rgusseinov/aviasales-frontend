@@ -1,11 +1,11 @@
-import { getTicketsByFilter } from "../utils/filter";
-import { FilterTypes, SortType } from "../utils/utils";
+import { FilterType, getTicketsByFilter } from "../utils/filter";
+import { SortType } from "../utils/sort";
 
 export default class TicketsModel {
   constructor(tickets) {
     this._tickets = tickets;
 
-    this._filterTypes = { ...FilterTypes };
+    this._filterTypes = { ...FilterType };
     this._sortType = SortType.CHEAP;
 
     this._filterChangeHandlers = []; //  Должны реагировать на изминения фильтров

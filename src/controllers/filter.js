@@ -13,9 +13,15 @@ export class FilterController {
   render() {
     const container = this._container;
 
-    render(container, this._filterComponent, "afterbegin");
+    render(container, this._filterComponent);
     this._filterComponent.setFilterChangeHandler(this._onFilterChange);
     this._filterComponent.setFirstFilterChangeHandler(this._onFilterChange);
+
+    this._setFilterAccess(true);
+  }
+
+  _setFilterAccess(flag) {
+    this._filterComponent.setFilterAccess(flag);
   }
 
   _onFilterChange(filterTypes) {

@@ -9,6 +9,9 @@ export const render = (element, component, position) => {
     case "afterend":
       element.insertAdjacentElement("afterend", component.getElement());
       break;
+    default:
+      element.insertAdjacentElement("afterbegin", component.getElement());
+      break;
   }
 };
 
