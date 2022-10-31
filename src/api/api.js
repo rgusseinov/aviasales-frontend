@@ -1,12 +1,10 @@
-const getSearchId = async () => {
-  return await fetch('https://front-test.dev.aviasales.ru/search')
-  .then(response => response.json())
-}
+const getSearchId = async () => await fetch("https://front-test.dev.aviasales.ru/search")
+  .then((response) => response.json());
 
 const requestTickets = async (searchId) => {
   const response = await fetch(`https://front-test.dev.aviasales.ru/tickets?searchId=${searchId}`);
   return response;
-}
+};
 
 export class API {
   constructor(endPoint) {

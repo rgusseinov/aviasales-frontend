@@ -1,18 +1,20 @@
 import LoadMoreButton from "../components/load-more-button";
 import Sort from "../components/sort";
 import Ticket from "../components/ticket";
-import { getSortedTickets, SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START } from "../utils/utils";
+import { RenderPosition } from "../utils/utils";
 import { remove, render } from "../utils/render";
+import { getSortedTickets } from "../utils/sort";
+import { SHOWING_TICKETS_ON_LOAD, SHOWING_TICKETS_ON_START } from "../utils/ticket";
 
-export class BoardController {
-  constructor(container, ticketsModel, api) {
+export default class BoardController {
+  constructor(container, ticketsModel, filterController) {
     this._container = container;
-    this._api = api;
 
     this._ticketsModel = ticketsModel;
     this._showingTicketsCount = SHOWING_TICKETS_ON_START;
 
-    this._sortComponent = new Sort(); 
+    this._filterController = filterController;
+    this._sortComponent = new Sort();
     this._loadMoreButtonComponent = new LoadMoreButton();
 
     this._onSortTypeChange = this._onSortTypeChange.bind(this);
@@ -41,10 +43,12 @@ export class BoardController {
   render() {
     const tickets = this._ticketsModel.getTickets();
     const appContentElement = document.querySelector(".app__content");
-    render(appContentElement, this._sortComponent, "afterbegin");
+    render(appContentElement, this._sortComponent);
 
     this._renderTickets(tickets);
     this._renderLoadMoreButton();
+
+    this._filterController._setFilterAccess(false);
   }
 
   _renderTickets(tickets) {
@@ -55,7 +59,7 @@ export class BoardController {
 
     sortedTickets.forEach((ticketItem) => {
       const ticket = new Ticket(ticketItem);
-      render(boardComponent, ticket, "beforeend");
+      render(boardComponent, ticket, RenderPosition.BEFOREEND);
     });
   }
 
@@ -71,7 +75,7 @@ export class BoardController {
     }
 
     const boardTickets = this._container;
-    render(boardTickets, this._loadMoreButtonComponent, "afterend");
+    render(boardTickets, this._loadMoreButtonComponent, RenderPosition.AFTEREND);
     this._loadMoreButtonComponent.setClickHandler(this._onLoadMoreButtonClick);
   }
 
