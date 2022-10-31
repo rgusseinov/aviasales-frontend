@@ -68,6 +68,9 @@ aside {
 			margin-left: -20px;
 			display: flex;
 			align-items: center;
+			&:hover {
+				cursor: pointer;
+			}
 
 			span {
 				margin-left: 10px;
@@ -169,6 +172,7 @@ aside {
 
 		label {
 			padding: 14px 20px;
+			cursor: pointer;
 		}
 
 		li.selected {
