@@ -42,7 +42,7 @@ export default class BoardController {
 
   render() {
     const tickets = this._ticketsModel.getTickets();
-    const appContentElement = document.querySelector(".app__content");
+    const appContentElement = this._container.parentElement;
     render(appContentElement, this._sortComponent);
 
     this._renderTickets(tickets);
