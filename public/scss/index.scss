@@ -68,6 +68,9 @@ aside {
 			margin-left: -20px;
 			display: flex;
 			align-items: center;
+			&:hover {
+				cursor: pointer;
+			}
 
 			span {
 				margin-left: 10px;
@@ -131,7 +134,7 @@ aside {
 		li {
 			background-color: #fff;
 			height: 48px;
-			min-width: 165px;
+			min-width: 249px;
 			color: #4A4A4A;
 			display: flex;
 			align-items: center;
@@ -168,7 +171,8 @@ aside {
 		}
 
 		label {
-			padding: 14px 20px;
+			padding: 14px 65px;
+			cursor: pointer;
 		}
 
 		li.selected {

@@ -1,7 +1,6 @@
 export const SortType = {
   CHEAP: "cheap",
   FAST: "fast",
-  OPTIMAL: "optmal",
 };
 
 export function sortByPrice(ticketA, ticketB) {
