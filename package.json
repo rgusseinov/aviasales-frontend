@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "search air tickets app on vanilla js",
   "main": "index.js",
+  "homepage": "https://rgusseinov.github.io/aviasales-frontend",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack serve --open",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [
     "search",
@@ -28,6 +31,7 @@
     "eslint": "^8.23.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
