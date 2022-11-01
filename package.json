@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "search air tickets app on vanilla js",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
