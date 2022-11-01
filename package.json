@@ -1,17 +1,18 @@
 {
+  "homepage": "https://rgusseinov.github.io/aviasales-frontend",
   "name": "aviasales-frontend",
   "version": "1.0.0",
   "description": "search air tickets app on vanilla js",
   "main": "index.js",
-  "homepage": "https://rgusseinov.github.io/aviasales-frontend",
+  "private": true,
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "start": "webpack serve --open",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "lint:fix": "eslint ./src --fix"
   },
   "keywords": [
     "search",
